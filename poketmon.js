@@ -34,4 +34,5 @@ function solution(nums) {
     } else{
         return arr.length
     }
+    
 }
