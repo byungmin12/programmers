@@ -16,6 +16,8 @@
 // 압축할 문자열 s가 매개변수로 주어질 때, 위에 설명한 방법으로 1개 이상 단위로 문자열을 잘라 압축하여
 //  표현한 문자열 중 가장 짧은 것의 길이를 return 하도록 solution 함수를 완성해주세요.
 
+
+
 // 제한사항
 // s의 길이는 1 이상 1,000 이하입니다.
 // s는 알파벳 소문자로만 이루어져 있습니다.
@@ -51,3 +53,49 @@
 // 문자열은 제일 앞부터 정해진 길이만큼 잘라야 합니다.
 // 따라서 주어진 문자열을 x / ababcdcd / ababcdcd 로 자르는 것은 불가능 합니다.
 // 이 경우 어떻게 문자열을 잘라도 압축되지 않으므로 가장 짧은 길이는 17이 됩니다.
+
+
+
+function solution(s) {
+    let results = []
+    for(let i=1 ; i<= s.length; i ++){
+        let newArray = splitWord(s,i)
+    let words = ""
+        let tem = 1
+        for(let n =0; n< newArray.length; n++){
+            if(newArray[n] === newArray[n+1]){
+                tem ++
+            }else{
+                if(tem !== 1){
+                words = words + tem + newArray[n]
+                }
+                else{
+                words = words + newArray[n]
+                }
+                tem = 1
+            }
+        }
+        results.push(words)
+    }
+    let longestLength = Math.max.apply(null,results.map(el=>el.length))
+   return longestLength
+}
+
+function splitWord(str,num){
+    let result = []
+    let arrOfStr = str.split("")
+    while(arrOfStr.length){
+        let tem = ""
+        for(let i =0; i<num; i++){
+            let addWord = arrOfStr.shift()
+            if(addWord !== undefined){
+            tem = tem + addWord}
+        }
+        result.push(tem)
+    }
+    return result
+}
+
+// 변환된 문자열을 담은 변수 reuslt
+// 자르는 단위를 나타낼 변수 splitNum
+// 잘라진 문자 단위를 나타낼 변수 word
