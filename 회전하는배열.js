@@ -43,3 +43,45 @@
 // 입출력 예 #3
 
 // 이 예시에서는 행렬의 테두리에 위치한 모든 칸들이 움직입니다. 따라서, 행렬의 테두리에 있는 수 중 가장 작은 숫자인 1이 바로 답이 됩니다.
+
+function solution(rows, columns, queries) {
+  var answer = [];
+
+  const arr = [...Array(rows)].map((_, r) =>
+    [...Array(columns)].map((_, c) => r * columns + c + 1)
+  );
+
+  queries.forEach((query) => {
+    let stack = [];
+    const newQuery = query.map((el) => el - 1);
+    for (let i = newQuery[1]; i <= newQuery[3]; i++) {
+      stack.push(arr[newQuery[0]][i]);
+    }
+    for (let i = newQuery[0] + 1; i <= newQuery[2]; i++) {
+      stack.push(arr[i][newQuery[3]]);
+    }
+    for (let i = newQuery[3] - 1; i >= newQuery[1]; i--) {
+      stack.push(arr[newQuery[2]][i]);
+    }
+    for (let i = newQuery[2] - 1; i > newQuery[0]; i--) {
+      stack.push(arr[i][newQuery[1]]);
+    }
+    answer.push(Math.min(...stack));
+    let temp = stack.pop();
+    stack.unshift(temp);
+
+    for (let i = newQuery[1]; i <= newQuery[3]; i++) {
+      arr[newQuery[0]][i] = stack.shift();
+    }
+    for (let i = newQuery[0] + 1; i <= newQuery[2]; i++) {
+      arr[i][newQuery[3]] = stack.shift();
+    }
+    for (let i = newQuery[3] - 1; i >= newQuery[1]; i--) {
+      arr[newQuery[2]][i] = stack.shift();
+    }
+    for (let i = newQuery[2] - 1; i > newQuery[0]; i--) {
+      arr[i][newQuery[1]] = stack.shift();
+    }
+  });
+  return answer;
+}
