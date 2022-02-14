@@ -2,40 +2,106 @@
  * 다시 풀어보세요
  * bfs dfs를 사용하여 푸는 방법에 대해 알아보기
  */
-
 function solution(places) {
-  var answer = places.map((place) => {
-    // 결과가 true 이면 거리두기가 지켜지지 않음
-    return place.some((row, rowIndex) => {
-      // true 이면 거리두기가 지켜지지 않음, 바로 종료
-      return row.split("").some((column, index, arr) => {
-        // 파티션이 있으면 거리두기 지킴
-        if (column == "X") return false;
-
-        // 상하좌우에 P가 몇개인지 조회
-        const userCount = [
-          arr[index - 1] || null, // 좌
-          arr[index + 1] || null, // 우
-          (place[rowIndex - 1] || "").charAt(index), // 상
-          (place[rowIndex + 1] || "").charAt(index), // 하
-        ].filter((v) => v == "P").length;
-
-        if (
-          (column == "P" && userCount > 0) || // P기준 상하좌우에 P가 있는지
-          (column == "O" && userCount >= 2)
-        ) {
-          // O기준 상하좌우에 P가 2개 이상인지
-          return true;
+  var answer = [];
+  //반
+  for (let i = 0; i < places.length; i++) {
+    let check = false;
+    //row
+    for (let n = 0; n < places[i].length; n++) {
+      let row = n;
+      //줄 column
+      for (let j = 0; j < places[i][n].length; j++) {
+        let column = j;
+        if (places[i][n][j] === "P") {
+          if (checkArray(places[i], row, column)) {
+            check = true;
+            break;
+          }
         }
-
-        return false;
-      }, "");
-    })
-      ? 0
-      : 1;
-  });
+      }
+      if (check) {
+        break;
+      }
+    }
+    if (check) {
+      answer = [...answer, 0];
+    } else {
+      answer = [...answer, 1];
+    }
+  }
 
   return answer;
+}
+
+function checkArray(origin, row, column) {
+  let result = false;
+  //좌우
+  for (let i = 1; i <= 2; i++) {
+    if (
+      origin[row][column + i] &&
+      origin[row][column + i] === "P" &&
+      origin[row][column + 1] !== "X"
+    ) {
+      return true;
+    }
+    if (
+      origin[row][column - i] &&
+      origin[row][column - i] === "P" &&
+      origin[row][column - 1] !== "X"
+    ) {
+      return true;
+    }
+    if (
+      origin[row + i] &&
+      origin[row + i][column] === "P" &&
+      origin[row + 1][column] !== "X"
+    ) {
+      return true;
+    }
+    if (
+      origin[row - i] &&
+      origin[row - i][column] === "P" &&
+      origin[row - 1][column] !== "X"
+    ) {
+      return true;
+    }
+  }
+
+  //대각선
+  if (origin[row - 1]) {
+    if (
+      origin[row - 1][column - 1] === "P" &&
+      (origin[row - 1][column] === "O" || origin[row][column - 1] === "O")
+    ) {
+      return true;
+    }
+
+    if (
+      origin[row - 1][column + 1] === "P" &&
+      (origin[row][column + 1] === "O" || origin[row - 1][column] === "O")
+    ) {
+      return true;
+    }
+  }
+
+  if (origin[row + 1]) {
+    if (
+      origin[row + 1][column - 1] === "P" &&
+      (origin[row + 1][column] === "O" || origin[row][column - 1] === "O")
+    ) {
+      return true;
+    }
+
+    if (
+      origin[row + 1][column + 1] === "P" &&
+      (origin[row + 1][column] === "O" || origin[row][column + 1] === "O")
+    ) {
+      return true;
+    }
+  }
+
+  return result;
 }
 
 // 거리두기 확인하기
