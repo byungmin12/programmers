@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = [];
+        let arr = Array.from({ length: 3 }, (e, i) => i + 1);
+
+        function combination(arr, num) {
+          let result = [];
+          if (num === 1) return arr.map((el) => [el]);
+
+          arr.forEach((el, i, origin) => {
+            let rest = origin.slice(i + 1);
+            let com = combination(rest, num - 1);
+            let newArr = com.map((jo) => el + jo);
+            result.push(...newArr);
+          });
+          return result;
+        }
+        for (let i = 1; i <= n; i++) {
+          let data = combination(arr, i);
+          answer.push(data.flat());
+        }
+        return answer.flat().map((el) => String(el));
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
