@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(limit, arr) {
+        let result = new Set();
+        let num = arr.length;
+        function dfs(d, sum) {
+          if (sum <= limit) {
+            result.add(sum);
+          }
+          if (d + 1 <= num) {
+            dfs(d + 1, sum + arr[d]);
+            dfs(d + 1, sum);
+          }
+        }
+        dfs(0, 0);
+        return Math.max(...result);
+      }
+
+      let arr = [81, 58, 42, 33, 61];
+      console.log(solution(259, arr));
+    </script>
+  </body>
+</html>

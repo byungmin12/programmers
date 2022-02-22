@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr, rest = []) {
+        let result = "NO";
+        const total = arr.reduce((acc, cur) => acc + cur);
+        const num = arr.length;
+        function dfs(d, sum) {
+          if (num === d) {
+            if (total - sum === sum) {
+              result = "Yes";
+            }
+          } else {
+            dfs(d + 1, sum + arr[d]);
+            dfs(d + 1, sum);
+          }
+        }
+        dfs(0, 0);
+        return result;
+      }
+
+      let arr = [1, 3, 5, 6, 7, 10];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
