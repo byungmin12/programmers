@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        let result = [];
+        let temp = Array.from({ length: n }, (v, i) => i + 1);
+        function combination(arr, selectNum) {
+          if (selectNum === 1) return arr.map((v) => [v]);
+          arr.forEach((v, idx, arr) => {
+            const fixed = v;
+            const restArr = arr;
+            const combinationArr = combination(restArr, selectNum - 1);
+            console.log(combinationArr);
+            const combineFix = combinationArr.map((v) => [fixed, ...v]);
+            result.push(...combineFix);
+          });
+        }
+        combination(temp, m);
+        return result;
+      }
+
+      console.log(solution(3, 2));
+    </script>
+  </body>
+</html>
