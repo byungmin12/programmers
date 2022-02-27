@@ -6,8 +6,24 @@
   <body>
     <script>
       function solution(m, arr) {
-        let result = [];
-        function dfs(sum, temp = []) {}
+        let result = Number.MAX_SAFE_INTEGER;
+        function dfs(sum, temp = []) {
+          // 총합이 거슬러 줄 금액보다 크면 리턴
+          console.log(sum, temp, result);
+          if (sum > m) return;
+          if (temp.length >= result) return; // 길이가 크면 굳이 할 필요가 없음   ==> 이걸 없애면 불필요한 계산은 많이 한다 .
+          // 같으면
+          if (sum === m) result = Math.min(temp.length, result);
+          else {
+            for (let i = 0; i < arr.length; i++) {
+              let a = [...temp, arr[i]];
+              dfs(
+                a.reduce((acc, cur) => acc + cur),
+                a
+              );
+            }
+          }
+        }
         dfs(0);
         return result;
       }
