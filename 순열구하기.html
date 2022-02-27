@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(limit, arr) {
+        function combination(arr, selectNum) {
+          let result = [];
+          if (selectNum === 1) return arr.map((el) => [el]);
+          arr.forEach((el, idx, origin) => {
+            const rest = [...origin.slice(0, idx), ...origin.slice(idx + 1)];
+            const com = combination(rest, selectNum - 1);
+            const merge = com.map((word) => [el, ...word]);
+            result.push(...merge);
+          });
+          return result;
+        }
+        return combination(arr, limit);
+      }
+
+      let arr = [3, 6, 9];
+      console.log(solution(2, arr));
+      //   let a = document.querySelector("#test");
+      //   console.log(a);
+      //   a.textContent = solution(2, arr);
+    </script>
+  </body>
+</html>
