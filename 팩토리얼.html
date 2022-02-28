@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let result;
+        function dfs(d) {
+          if (d === 1) return 1;
+          else {
+            return d * dfs(d - 1);
+          }
+        }
+        result = dfs(n);
+        return result;
+      }
+
+      console.log(solution(5));
+    </script>
+  </body>
+</html>
