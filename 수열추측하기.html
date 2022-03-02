@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, f) {
+        let result = [];
+        let dy = Array.from(Array(n + 1), () => Array(n + 1).fill(0));
+        let check = Array.from({ length: n + 1 }, () => 0);
+        let p = Array.from({ length: n }, () => 0);
+        let b = Array.from({ length: n }, () => 0);
+        let flag = false;
+        function combi(n, r) {
+          if (dy[n][r] > 0) return dy[n][r];
+          if (n === r || r === 0) return 1;
+          else {
+            return (dy[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
+          }
+        }
+        function dfs(d, sum) {
+          if (flag) return;
+          if (d === n && sum === f) {
+            result = [...p];
+            flag = true;
+          } else {
+            for (let i = 1; i <= n; i++) {
+              if (check[i] === 0) {
+                check[i] = 1;
+                p[d] = i;
+                dfs(d + 1, sum + b[d] * p[d]);
+                check[i] = 0;
+              }
+            }
+          }
+        }
+        for (let i = 0; i < n; i++) {
+          b[i] = combi(n - 1, i);
+        }
+        dfs(0, 0);
+        return result;
+      }
+      console.log(solution(4, 16));
+    </script>
+  </body>
+</html>
