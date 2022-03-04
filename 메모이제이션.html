@@ -30,6 +30,22 @@
         }
         return factorial(n);
       }
+
+      function arrayMemoization(n) {
+        let memo = Array.from(Array(n + 1).fill(0));
+        function factorial(number) {
+          if (number === 0) return 1;
+          else {
+            let saved = memo[number - 1] || factorial(number - 1);
+            let result = number * saved;
+            memo[number] = result;
+
+            return result;
+          }
+        }
+        return factorial(n);
+      }
+      console.log(arrayMemoization(7));
       console.log(objectMemoization(7));
       console.log(solution(33, 19));
     </script>
