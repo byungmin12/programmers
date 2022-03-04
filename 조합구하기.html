@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        let numArr = Array.from({ length: n }, () => 0).map((el, i) => i + 1);
+        let answer = [];
+
+        function dfs(d, a) {
+          if (d === 1) {
+            return a.map((el) => [el]);
+          } else {
+            a.forEach((fixed, idx, origin) => {
+              let rest = [...origin.slice(0, idx), ...origin.slice(idx + 1)];
+              let com = dfs(d - 1, rest);
+              let merge = com.map((word) => [fixed, ...word]);
+              answer.push(...merge);
+            });
+          }
+          return answer;
+        }
+        console.log(dfs(m, numArr));
+        return dfs(m, numArr).length;
+      }
+
+      console.log(solution(4, 2));
+    </script>
+  </body>
+</html>
+<!-- 
+1부터N까지번호가적힌구슬이있습니다.이중 M개를뽑는방법의수를출력하는프로그 램을 작성하세요.
+▣ 입력설명
+첫 번째 줄에 자연수 N(3<=N<=10)과 M(2<=M<=N) 이 주어집니다.
+▣ 출력설명
+첫 번째 줄에 결과를 출력합니다. 맨 마지막 총 경우의 수를 출력합니다. 출력순서는 사전순으로 오름차순으로 출력합니다.
+▣ 입력예제 1 4   2
+▣ 출력예제 1 1   2
+13
+14
+23 24 34 6 -->
+<!-- [자바스크립트 알고리즘 문제풀이] -->
