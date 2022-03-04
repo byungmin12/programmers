@@ -7,9 +7,10 @@
     <script>
       function solution(n, m) {
         let numArr = Array.from({ length: n }, () => 0).map((el, i) => i + 1);
-        let answer = [];
 
         function dfs(d, a) {
+          let answer = [];
+
           if (d === 1) {
             return a.map((el) => [el]);
           } else {
@@ -22,7 +23,6 @@
           }
           return answer;
         }
-        console.log(dfs(m, numArr));
         return dfs(m, numArr).length;
       }
 
