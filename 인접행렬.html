@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        let graph = Array.from(Array(n + 1), () => Array(n + 1).fill(0));
+        let checkArr = Array.from(Array(n + 1)).fill(0);
+        for (let i = 0; i < arr.length; i++) {
+          graph[arr[i][0]][arr[i][1]] = 1;
+        }
+        let route = [];
+        let result = [];
+        let count = 0;
+        console.log(graph);
+        function dfs(v) {
+          if (v === n) {
+            result = [...result, route];
+            console.log(result, route);
+            count++;
+          } else {
+            graph[v].forEach((el, idx) => {
+              if (el === 1 && checkArr[idx] === 0) {
+                checkArr[idx] = 1;
+                route.push(idx);
+                dfs(idx);
+                checkArr[idx] = 0;
+                route.pop(idx);
+              }
+            });
+          }
+          return count;
+        }
+        return dfs(1);
+      }
+
+      let arr = [
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [2, 1],
+        [2, 3],
+        [2, 5],
+        [3, 4],
+        [4, 2],
+        [4, 5],
+      ];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
