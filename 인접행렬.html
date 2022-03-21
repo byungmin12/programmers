@@ -17,8 +17,8 @@
         console.log(graph);
         function dfs(v) {
           if (v === n) {
-            result = [...result, route];
-            console.log(result, route);
+            // result = [...result, route];
+            console.log(route);
             count++;
           } else {
             graph[v].forEach((el, idx) => {
@@ -33,6 +33,8 @@
           }
           return count;
         }
+        checkArr[1] = 1;
+        route.push(1);
         return dfs(1);
       }
 
