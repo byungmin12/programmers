@@ -28,6 +28,13 @@ function solution(length, area, input) {
       for (let i = 0; i < dx.length; i++) {
         let nextX = xx + dx[i];
         let nextY = yy + dy[i];
+        // if (
+        //   nextX <= 0 ||
+        //   nextX > Number(area[0]) ||
+        //   nextY < 0 ||
+        //   nextY > Number(area[1])
+        // )
+        //   continue;
         if (
           matrix[xx + dx[i]] !== undefined &&
           matrix[xx + dx[i]][yy + dy[i]] !== undefined &&
