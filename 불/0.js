@@ -1,11 +1,6 @@
 var fs = require("fs");
 const filepath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 const splitStr = process.platform === "linux" ? "\n" : "\r\n";
-<<<<<<< HEAD
-var tempInput = fs.readFileSync(filepath).toString().split("\n");
-
-console.log(tempInput);
-=======
 
 var input = fs.readFileSync(filepath).toString().split(splitStr); // 개행문자로 입력을 구분한다.
 
@@ -84,4 +79,3 @@ function solution(matrix) {
 // }
 
 console.log(solution(matrix[1]));
->>>>>>> ee6beb99512cd55ba03648a4771c2578e16f05f7
