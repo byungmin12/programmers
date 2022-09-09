@@ -63,4 +63,3 @@ var diameterOfBinaryTree = function(root) {
     dfs(root)
     return dep
 };
-};

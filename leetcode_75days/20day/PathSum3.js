@@ -31,22 +31,19 @@
 // 402,219
 // Submissions
 // 817,906
-var pathSum = function (root, sum) {
+var pathSum = function(root, targetSum) {
   if (!root) return 0;
   return (
-    pathSumOnlyStart(root, sum) +
-    pathSum(root.left, sum) +
-    pathSum(root.right, sum)
-  );
+      pathSumStart(root,targetSum) + pathSum(root.left,targetSum) + pathSum(root.right,targetSum)
+  )
 };
 
-const pathSumOnlyStart = (root, sum) => {
-  if (!root) return 0;
-  const self = root.val === sum ? 1 : 0;
-  console.log(root, self);
+const pathSumStart = (root,sum) => {
+  if(!root)return 0
+
+  let temp = sum === root.val ? 1 : 0
+
   return (
-    self +
-    pathSumOnlyStart(root.left, sum - root.val) +
-    pathSumOnlyStart(root.right, sum - root.val)
-  );
-};
+      temp + pathSumStart(root.left,sum-root.val) + pathSumStart(root.right,sum-root.val)
+  )
+}
