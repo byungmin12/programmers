@@ -107,3 +107,25 @@ var spiralOrder = function(matrix) {
   }
   return res
 };
+
+const solution = function (matrix){
+  // [[1,2,3],[4,5,6],[7,8,9]]
+  const res = []
+  while(matrix.length){
+    const first = matrix.shift() //[1,2,3] // [8,7]
+
+    //첫번째 배열 그대로 넣음
+    res.push(...first)
+
+    for(const m of matrix){ //[4,5,6],[7,8,9] // [5,4]
+      // m = [4,5,6] // m =[7,8,9]
+      const value = m.pop() //6 // 9 // 4
+
+      if(value)res.push(value)
+
+      m.reverse() // [5,4] // [8,7]
+    }
+    matrix.reverse() // [[8,7],[5,4]]
+  }
+  return res
+}
