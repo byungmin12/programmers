@@ -52,7 +52,11 @@
  * @param {number[][]} grid
  * @return {number[]}
  */
-var findBall = function (grid) {
+/**
+ * @param {number[][]} grid
+ * @return {number[]}
+ */
+var findBall = function(grid) {
   let result = [];
   let length = grid[0].length;
 
@@ -63,7 +67,7 @@ var findBall = function (grid) {
 
     while (topBottom <= grid.length - 1) {
       prev = grid[topBottom][leftRight];
-      leftRight = leftRight + prev;
+
 
       if (prev === grid[topBottom][leftRight]) {
         topBottom = topBottom + 1;
@@ -72,14 +76,6 @@ var findBall = function (grid) {
         break;
       }
 
-      //             if(leftRight <0 || leftRight> length -1 ){
-
-      //             }
-
-      //             if(Math.max(prev,grid[topBottom][leftRight]) + Math.min(prev,grid[topBottom][leftRight]) === 0  ){
-      //                 leftRight = -1
-      //                 break
-      //             }
     }
 
     result.push(leftRight);
