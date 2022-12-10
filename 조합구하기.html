@@ -7,7 +7,7 @@
     <script>
       function solution(n, m) {
         let numArr = Array.from({ length: n }, () => 0).map((el, i) => i + 1);
-
+      console.log(numArr)
         function dfs(d, a) {
           let answer = [];
 
@@ -17,13 +17,17 @@
             a.forEach((fixed, idx, origin) => {
               let rest = [...origin.slice(0, idx), ...origin.slice(idx + 1)];
               let com = dfs(d - 1, rest);
+
               let merge = com.map((word) => [fixed, ...word]);
+              console.log(rest,com)
               answer.push(...merge);
             });
           }
           return answer;
         }
-        return dfs(m, numArr).length;
+        const temp =dfs(m, numArr)
+        console.log(temp)
+        return temp.length;
       }
 
       console.log(solution(4, 2));
