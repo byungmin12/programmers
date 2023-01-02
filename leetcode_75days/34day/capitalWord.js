@@ -1,0 +1,1 @@
+var detectCapitalUse = function(word) {    const leftedWord = word.slice(1)    return  word === word.toUpperCase() || leftedWord === leftedWord.toLowerCase()};
