@@ -1,0 +1,1 @@
+/** * @param {number[]} nums * @param {number} k * @return {number} */var findMaxAverage = function(nums, k) {    let max  = nums.slice(0,k).reduce((acc,cur)=>acc+cur)    let sum = max    for(let i =k; i<nums.length ; i++){        sum = sum - nums[i-k] + nums[i]        max = Math.max(sum,max)    }    return max/k};
