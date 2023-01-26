@@ -1,0 +1,1 @@
+var sortedSquares = function(A) {    let result = []    let head = 0    let tail = A.length -1    let p = tail    while(head<= tail){        if(A[head]**2 <= A[tail]**2){            result[p--] = A[tail]**2            tail--        }        else {            result[p--] = A[head]** 2            head++        }    }    return result};
