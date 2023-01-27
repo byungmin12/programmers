@@ -1,0 +1,1 @@
+/** * @param {number[]} nums * @param {number} k * @return {number} */var longestOnes = function(nums, k) {    //k는 0을 1로 바꿀 수 있는 수    let start =0,end=0, cnt=0    while(end < nums.length){        if(nums[end]===0)cnt++        if(cnt > k ){            if( nums[start]===0)cnt--            start++        }        end++    }    return end - start};
