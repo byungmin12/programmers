@@ -1,0 +1,1 @@
+/** * @param {number[]} nums * @return {number[]} */var runningSum = function(nums) {    return nums.reduce((acc,cur,idx)=>{        if(idx===0){            acc.push(cur)        }else{            acc.push(cur + acc[idx-1])        }        return acc    },[])};
