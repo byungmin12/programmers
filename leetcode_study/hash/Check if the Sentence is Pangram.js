@@ -1,0 +1,1 @@
+/** * @param {string} sentence * @return {boolean} */var checkIfPangram = function(sentence) {    let hash = {}    for(let i=0; i<sentence.length; i++){        hash[sentence[i]] = true열    }    return Object.keys(hash).length === 26};var checkIfPangram = function (sentence) {    return new Set(sentence).size === 26};
