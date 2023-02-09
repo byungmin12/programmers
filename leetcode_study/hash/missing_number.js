@@ -1,0 +1,1 @@
+/** * @param {number[]} nums * @return {number} */var missingNumber = function(nums) {    const memo = new Set(nums)    for(let i =0 ; i<nums.length; i++){        if(!memo.has(i))return i    }    return Math.max(...nums)+1};
