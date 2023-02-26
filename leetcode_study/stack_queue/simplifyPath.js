@@ -1,0 +1,1 @@
+/** * @param {string} path * @return {string} */var simplifyPath = function(path) {    const paths = path.split("/")    let stack = []    paths.forEach((p)=>{        if(p === ".."){            stack.pop()        }else if(p !== "." && p !== ""){            stack.push(p)        }    })    return `/${stack.join("/")}`};
