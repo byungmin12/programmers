@@ -1,0 +1,1 @@
+function solution(paintingArea, brush, section) {    let cnt =0    let curPainting = 0    section.forEach((s)=>{        if(s > curPainting){            curPainting = s + brush -1            cnt++        }    })    return cnt}
