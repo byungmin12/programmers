@@ -1,0 +1,1 @@
+function solution(s) {    // return s.split(" ").reduce((acc,cur,i)=>{    //     if(cur==="")return acc + " "    //     let str = `${cur[0].toUpperCase()}${cur.slice(1).toLowerCase()}`    //     return i===0 ? acc + str : acc + " " +str    // },"")    return s.split(' ')        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())        .join(' ');}
