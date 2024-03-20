@@ -1,5 +1,5 @@
 // you can write to stdout for debugging purposes, e.g.
-// console.log('this is a debug message');
+// console.log('this is tapeEquilibrium.js debug message');
 // https://www.lintcode.com/problem/1604/
 function solution(A) {
   // write your code in JavaScript (Node.js 8.9.4)

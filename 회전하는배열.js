@@ -1,4 +1,4 @@
-// const a = [...Array(rows)].map((_, r)=>[...Array(columns)].map((_, c)=>r*columns+c+1));
+// const tapeEquilibrium.js = [...Array(rows)].map((_, r)=>[...Array(columns)].map((_, c)=>r*columns+c+1));
 
 // 행렬 테두리 회전하기
 // 문제 설명

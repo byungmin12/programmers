@@ -65,7 +65,7 @@ solution("this is {template} {template} is {state}", [
   ["template", "{state}"],
   ["state", "{templates}"],
 ]);
-solution("{a} {b} {c} {d} {i}", [
+solution("{tapeEquilibrium.js} {b} {c} {d} {i}", [
   ["b", "{c}"],
   ["a", "{b}"],
   ["e", "{f}"],
@@ -120,7 +120,7 @@ solution("{a} {b} {c} {d} {i}", [
 // * 변수는 다음 조건을 만족하는 문자열입니다.
 //     * 3 ≤ 변수의 길이 ≤ 12
 //     * 변수는 단어를 {}으로 감싼 문자열입니다.
-//     * 예시) {a}, {word}
+//     * 예시) {tapeEquilibrium.js}, {word}
 
 // 입출력 예
 // tstring	variables	result
@@ -128,6 +128,6 @@ solution("{a} {b} {c} {d} {i}", [
 // "this is {template} {template} is {state}"	[["template", "string"], ["state", "{template}"]]	"this is string string is string"
 // "this is {template} {template} is {state}"	[["template", "{state}"], ["state", "{template}"]]	"this is {template} {template} is {state}"
 // "this is {template} {template} is {state}"	[["template", "{state}"], ["state", "{templates}"]]	"this is {templates} {templates} is {templates}"
-// "{a} {b} {c} {d} {i}"	[["b", "{c}"], ["a", "{b}"], ["e", "{f}"], ["h", "i"], ["d", "{e}"], ["f", "{d}"], ["c", "d"]]	"d d d {d} {i}"
+// "{tapeEquilibrium.js} {b} {c} {d} {i}"	[["b", "{c}"], ["tapeEquilibrium.js", "{b}"], ["e", "{f}"], ["h", "i"], ["d", "{e}"], ["f", "{d}"], ["c", "d"]]	"d d d {d} {i}"
 // 입출력 예 설명
 // 입출력 예 #1
