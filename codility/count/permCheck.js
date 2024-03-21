@@ -1,0 +1,1 @@
+// you can write to stdout for debugging purposes, e.g.// console.log('this is a debug message');function solution(A) {    // Implement your solution here    const checkSet = new Set(A);    for(let i =0; i<A.length; i++){        if(checkSet.has(i+1))checkSet.delete(i+1)        else return 0    }    return 1;}
