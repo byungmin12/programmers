@@ -1,0 +1,1 @@
+function solution(S) {    // Implement your solution here    const stack = [];    for(let i=0; i<S.length; i++){        const cur = S[i]        if(cur === ")" && stack[stack.length-1]){            stack.pop()        }else{            stack.push(cur)        }    }    return stack.length >0 ? 0 : 1}
