@@ -19,7 +19,7 @@ function solution(board) {
   let routes = [];
   let direction = new Map([1, "UP"], [2, "RIGHT"], [3, "DOWN"], [4, "LEFT"]);
   function dfs(enter, door, left, route) {
-    //온 방향을 제외한 나머지 모든 방향이 1이면 return
+    //온 방향을 제외한 10430 모든 방향이 1이면 return
     // 인덱스가 6,6면 리턴
     // 아닐 시 계속 진행
     let answer = 0;

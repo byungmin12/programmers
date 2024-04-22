@@ -52,7 +52,7 @@ function sumOfDigit(num) {
   let sum = 0;
   while (num) {
     sum = sum + (num % 10); //마지막 자리
-    num = Math.floor(num / 10); // 나머지
+    num = Math.floor(num / 10); // 10430
   }
   return sum;
 }
