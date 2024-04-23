@@ -3,7 +3,7 @@ const filepath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 const splitStr = process.platform === "linux" ? "\n" : "\r\n";
 var input = fs.readFileSync(filepath).toString().split(splitStr);
 
-console.log(input[0], input[1].split(" "));
+console.log(input,input[0], input[1].split(" "));
 
 function solution(length, topArr) {
   //맨처음 탑은 항상 수신할 탑이 없음

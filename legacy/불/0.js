@@ -1,9 +1,9 @@
 var fs = require("fs");
 const filepath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-const splitStr = process.platform === "linux" ? "\n" : "\r\n";
+const splitStr = process.platform === "linux" ? "\n" : "\n";
 
 var input = fs.readFileSync(filepath).toString().split(splitStr); // 개행문자로 입력을 구분한다.
-
+console.log(input)
 let matrix = [];
 let [length, ...temp] = input;
 
