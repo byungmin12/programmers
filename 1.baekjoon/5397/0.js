@@ -4,17 +4,22 @@ const splitStr = process.platform === "linux" ? "\n" : "\r";
 
 var inputs = fs.readFileSync(filepath, "utf8").toString().trim().split(splitStr);
 
+function f(commands) {
+    const left = []
+    const right = []
+    const operators = ["<", ">", "-"]
 
-const strings = inputs[0].split("")
-const commands = inputs.slice(2).map((str)=>str.split(" "))
-const left = [...strings]
-const right = []
-commands.forEach((command)=>{
-    const [key, word] = command
-    if(key === "L" && left.length )right.push(left.pop())
-    if(key === "D" && right.length) left.push(right.pop())
-    if(key==="B" && left.length )left.pop()
-    if(key === "P")left.push(word)
-})
+    for(let i=0; i<commands.length; i++){
+        const cur = commands[i]
+        if(cur===operators[0] && left.length)right.push(left.pop())
+        if(cur===operators[1] && right.length)left.push(right.pop())
+        if(cur === operators[2] && left.length)left.pop()
 
-console.log([...left,...right.reverse()].join(""))
+        if(!operators.includes(cur))left.push(cur)
+    }
+    return [...left,...right.reverse()].join("")
+}
+
+for(let i=1; i<inputs.length; i++){
+    console.log(f(inputs[i].split("")))
+}
