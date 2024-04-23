@@ -1,13 +1,12 @@
 var fs = require("fs");
 const filepath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-const splitStr = process.platform === "linux" ? "\n" : "\r\n";
+const splitStr = process.platform === "linux" ? "\n" : "\r";
 
-var input = fs.readFileSync(filepath).toString().split("")
+var input = fs.readFileSync(filepath).toString().split(splitStr).map((strNum)=>Number(strNum))
 
-const array = Array.from({length: 26}).fill(0)
+const array = Array.from({length: 10}).fill(0)
+const multiplicationString = (input[0] * input[1] * input[2]).toString().split("") // 17037300
 
-const startAlphabetCode = "A".charCodeAt()
-input.forEach((alphabet)=> array[alphabet.toUpperCase().charCodeAt() - startAlphabetCode]++)
+multiplicationString.forEach((num)=>array[Number(num)]++)
 
-console.log(array.join(" "))
-
+array.forEach((cnt)=>console.log(cnt))
