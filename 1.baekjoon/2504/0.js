@@ -1,44 +1,63 @@
 var fs = require("fs");
 const filepath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 const splitStr = process.platform === "linux" ? "\n" : "\r";
+var inputs = fs.readFileSync(filepath).toString().split(splitStr);
+let length = inputs.shift()
 
-var inputs = fs.readFileSync(filepath, "utf8").toString().trim().split(splitStr)[0].split("")
 
+const array = []
 
-function f(inputs) {
+while(length){
+    length--
+    let temp = []
+    const [x,y,l] = inputs.shift().split(" ").map(num=>Number(num))
+    temp.push([x,y,l])
+    for(let i =0; i<l; i++){
+        temp.push(inputs.shift().split(" ").map(num=>Number(num)))
+    }
 
-    const stack = []
+    array.push(temp)
+}
 
-    for(let i=0; i<inputs.length; i++){
-        const cur = inputs[i]
-        if(cur === "(" || cur === "["){
-            stack.push(cur)
-        }else{
-            const top = stack[stack.length -1]
-            const reverse = cur ===")" ? "(" : "["
-            const point = cur ===")" ? 2 : 3
+array.forEach(([arr,...cabbages])=>{
+    console.log(f(arr,cabbages))
 
-            if(top === reverse){
-                stack.pop()
-                stack.push(point)
-            }else{
-                let sum = 0
-                while(1){
-                    const pop = stack.pop()
-                    if(typeof  pop === "number"){
-                        sum += pop
-                    }else if(pop === reverse){
-                        stack.push(sum * point)
-                        break
-                    }else{
-                        return 0
-                    }
-                }
+})
+
+function f(arr, cabbages) {
+    const originX = Math.max(...cabbages.map(cabbage=>cabbage[0])) + 1
+    const originY = Math.max(...cabbages.map(cabbage=>cabbage[1])) +1
+    let farm =  Array.from(Array(originY), ()=> Array(originX).fill(0))
+    let result = 0
+
+    for(let i=0; i<cabbages.length; i++){
+        const [x,y] = cabbages[i]
+        farm[y][x] = 1
+    }
+
+    for(let i =0; i<originY; i++){
+        for(let n=0; n<originX; n++){
+            if(farm[i][n] ===1){
+                bfs(n,i)
+                result++
             }
         }
     }
-    const result = stack.reduce((acc,cur)=>acc+cur)
-    return typeof  result === "number" ? result : 0
-}
 
-console.log(f(inputs))
+    function bfs(x,y) {
+        const direction = [[1,0],[0,1],[-1,0],[0,-1]]
+
+        farm[y][x] = 0
+
+        for(let i =0; i<direction.length; i++){
+            const dx = x + direction[i][1]
+            const dy = y + direction[i][0]
+
+            if(!farm[dy] || !farm[dy][dx] ||farm[dy][dx] === 0 )continue;
+            bfs(dx,dy)
+        }
+
+    }
+
+    return result
+}
