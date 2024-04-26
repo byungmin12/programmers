@@ -29,13 +29,13 @@ function f(row,col,map) {
         for(let i=0; i<dx.length; i++){
             const [nx,ny] = [x+dx[i] , y+ dy[i]]
 
-            if(!map[ny] || map[ny][nx]=== undefined)continue
-            const cur = map[ny][nx]
-            if(cur === 0 && visited[ny][nx][isBreak] === 0){
-                visited[ny][nx][isBreak] =  visited[y][x][isBreak] +1
+            if(!map[ny] || map[ny][nx] === undefined)continue
+
+            if(map[ny][nx] ===0 && visited[ny][nx][isBreak] === 0){
+                visited[ny][nx][isBreak] = visited[y][x][isBreak] + 1
                 queue.push([nx,ny,isBreak])
-            }else if(cur === 1 && isBreak ===0){
-                visited[ny][nx][isBreak + 1] =  visited[y][x][isBreak] +1
+            }else if(map[ny][nx] ===1 && isBreak === 0){
+                visited[ny][nx][isBreak + 1] = visited[y][x][isBreak] + 1
                 queue.push([nx,ny,isBreak + 1])
             }
         }
