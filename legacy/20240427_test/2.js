@@ -1,0 +1,1 @@
+function solution(arr) {    const map = new Set(arr)    const length = arr.length;    for(let i=0; i<length; i++){        if(!map.has(i+1))return false    }    return true}
