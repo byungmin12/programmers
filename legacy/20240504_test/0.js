@@ -1,0 +1,1 @@
+function solution(n) {    let length = 1    let cnt = 9    let start = 1    while(n > length * cnt){        n  = n - length * cnt        length++        cnt = cnt * 10 // 개수 1의자리일때 9개        start = start * 10 // 시작 숫자    }    start = start + ((n - 1)/length)    const result = Math.floor(start).toString()    return Number(result[(n-1) % length])}
